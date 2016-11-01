@@ -4,7 +4,18 @@ var app = express();
 var dataFile = require('./data/data.json');
 var io = require('socket.io')();
 
-app.set('port', process.env.PORT || 3000 );
+var http = require('http');
+var myServer = http.createServer(function(request,respnose)
+{
+    response.writeHead(200, {"Content-Type" : "text/html"});
+    response.write('Roux Meetups');
+    response.end();
+});
+
+myServer.listen(3000);
+console.log('Go to http://localhost:3000 on your browser');
+
+app.set('port', process.env.PORT || 2000 );
 app.set('appData', dataFile);
 app.set('view engine', 'ejs');
 app.set('views', 'app/views');
